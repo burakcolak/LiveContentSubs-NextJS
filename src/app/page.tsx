@@ -20,9 +20,6 @@ export default function Home() {
     >
       <AuthProvider>
         <div>
-          <AuthActions />
-        </div>
-        <div>
           <LoginButton />
           <RegisterButton />
           <LogoutButton />

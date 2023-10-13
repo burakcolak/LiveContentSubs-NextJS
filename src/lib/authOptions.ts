@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
           const { data } = await axios<{ token: string }>({
             method: "post",
             baseURL: API_URL,
-            url: "/authentication",
+            url: "/api/authentication",
             data: {
               loginName: credentials?.email,
               password: credentials?.password,
@@ -35,7 +35,7 @@ export const authOptions: NextAuthOptions = {
           // TODO: return proper user info
           // TODO: http://localhost:3000/session
 
-          const user: User = { id: 1, name: "Admins", email: "admin@admin.com", token: data.token };
+          const user: User = { id: 1, name: "Admins", email: data.token, token: data.token };
           //TODO: Check user null
 
           return user;
@@ -45,17 +45,17 @@ export const authOptions: NextAuthOptions = {
           //          throw e;
         }
       },
-
     }),
+
   ],
   callbacks: {
     async jwt(params: { token: JWT, user: User | any, account: Account | null, profile?: Profile, isNewUser?: boolean }): Promise<JWT> {
       const { token, user, account, profile, isNewUser } = params;
-      console.log("user", user);
+      // console.log("user", user);
       if (user) {
         token.accessToken = user.token;
       }
-      console.log("jwt", token);
+      //console.log("jwt", token);
       return token;
     },
     async session(params: { session: Session, token: JWT }): Promise<Session> {
@@ -65,5 +65,5 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     }
-  },
+  }
 };

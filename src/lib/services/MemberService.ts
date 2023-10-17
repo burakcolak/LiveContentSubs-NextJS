@@ -1,6 +1,8 @@
+import { getServerSession } from "next-auth";
+import { parseResponse } from "../utils";
 const baseUrl = process.env.API_URL ?? '';
 
-interface RegisterMemberRequest {
+export interface RegisterMemberRequest {
     firstName?: string | null;
     lastName?: string | null;
     email?: string | null;
@@ -8,11 +10,21 @@ interface RegisterMemberRequest {
     loginName?: string | null;
 }
 
-interface RegisterMemberResponse {
-    description: string;
+export interface RegisterMemberResponse {
+    type: string;
+    title: string;
+    status: number;
+    traceId: string;
+    errors: ValidationError;
+
 }
 
-async function register(request: RegisterMemberRequest): Promise<RegisterMemberResponse | null> {
+export interface ValidationError {
+    [fieldName: string]: string[];
+}
+
+export async function register(request: RegisterMemberRequest): Promise<RegisterMemberResponse | null> {
+    console.log('request', request)
     try {
         const response = await fetch(`${baseUrl}/api/member/register`, {
             method: 'POST',
@@ -22,15 +34,24 @@ async function register(request: RegisterMemberRequest): Promise<RegisterMemberR
             body: JSON.stringify(request),
         });
 
+        const responseModel = await parseResponse<RegisterMemberResponse>(response);
+
+        console.log('register response', responseModel)
+
         if (!response.ok) {
             console.log(`Failed to register member (Status: ${response.status})`);
-            return null;
+            return responseModel;
         }
 
-        const registerResponseData = await response.json();
-        return registerResponseData as RegisterMemberResponse;
+        //TODO: return response data
+        if (response.ok && !response)
+            return null
+
+        return null
+        // const registerResponseData = await response.json();
+        // return registerResponseData as RegisterMemberResponse;
     } catch (error) {
-        console.error('Error fetching member:', error);
+        console.error('Error register member:', error);
         return null;
     }
 }

@@ -4,7 +4,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Container = ({ children }: Props) => {
+const FormContainer = ({ children }: Props) => {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col w-1/3 max-w-md p-6 rounded-md sm:p-10 bg-gray-50 text-gray-800">
@@ -14,4 +14,4 @@ const Container = ({ children }: Props) => {
   );
 };
 
-export default Container;
+export default FormContainer;

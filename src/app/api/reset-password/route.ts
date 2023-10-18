@@ -1,11 +1,10 @@
-import { RegisterMemberRequest, register } from "@/lib/services/MemberService";
+import { ResetPasswordRequest, resetPassword } from "@/lib/services/MemberService";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    const request = await req.json() as RegisterMemberRequest;
-
+    const request = await req.json() as ResetPasswordRequest;
     try {
-        const result = await register(request);
+        const result = await resetPassword(request);
 
         if (result?.status !== 200) {
             return new NextResponse(
@@ -17,7 +16,7 @@ export async function POST(req: Request) {
         return new NextResponse(
             JSON.stringify({
                 status: 200,
-                title: "User registered.",
+                title: "Password changed.",
             }),
             { status: 200 }
         );

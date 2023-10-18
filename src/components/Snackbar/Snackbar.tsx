@@ -1,9 +1,14 @@
+import Link from "next/link";
 import React from "react";
 type Props = {
   text: string;
+  link?: {
+    href: string;
+    text: string;
+  };
   handleClose: () => void;
 };
-const Snackbar = ({ text, handleClose }: Props) => {
+const Snackbar = ({ text, link, handleClose }: Props) => {
   return (
     <div className="flex flex-row pl-4 py-2 gap-2 items-center border rounded-lg shadow overflow-hidden bg-gray-50 border-teal-600">
       <span className="flex-shrink-0 inline-flex mx-3 item-center justify-center leadi rounded-full bg-teal-600 text-gray-50">
@@ -22,6 +27,11 @@ const Snackbar = ({ text, handleClose }: Props) => {
       </span>
       <div className="flex-1 p-2">
         <p className="text-sm text-gray-800">{text}</p>
+        {link && (
+          <Link className="text-sm" href={link.href}>
+            {link.text}
+          </Link>
+        )}
       </div>
       <button
         type="button"

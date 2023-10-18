@@ -16,7 +16,6 @@ export interface RegisterMemberResponse {
     status: number;
     traceId: string;
     errors: ValidationError;
-
 }
 
 export interface ValidationError {
@@ -24,7 +23,6 @@ export interface ValidationError {
 }
 
 export async function register(request: RegisterMemberRequest): Promise<RegisterMemberResponse | null> {
-    console.log('request', request)
     try {
         const response = await fetch(`${baseUrl}/api/member/register`, {
             method: 'POST',
@@ -35,8 +33,6 @@ export async function register(request: RegisterMemberRequest): Promise<Register
         });
 
         const responseModel = await parseResponse<RegisterMemberResponse>(response);
-
-        console.log('register response', responseModel)
 
         if (!response.ok) {
             console.log(`Failed to register member (Status: ${response.status})`);
@@ -56,18 +52,21 @@ export async function register(request: RegisterMemberRequest): Promise<Register
     }
 }
 
-interface ForgotPasswordRequest {
+export interface ForgotPasswordRequest {
     loginName?: string | null;
 }
 
-interface ForgotPasswordResponse {
-    description: string;
-    // You can define additional properties if needed based on the actual response schema
+export interface ForgotPasswordResponse {
+    type: string;
+    title: string;
+    status: number;
+    traceId: string;
+    errors: ValidationError;
 }
 
-async function forgotPassword(request: ForgotPasswordRequest): Promise<ForgotPasswordResponse | null> {
+export async function forgotPassword(request: ForgotPasswordRequest): Promise<ForgotPasswordResponse | null> {
     try {
-        const response = await fetch(`${baseUrl}/api/member/forgotPassword`, {
+        const response = await fetch(`${baseUrl}/api/member/forgot-password`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,33 +74,36 @@ async function forgotPassword(request: ForgotPasswordRequest): Promise<ForgotPas
             body: JSON.stringify(request),
         });
 
+        const forgotPasswordResponseData = await parseResponse<ForgotPasswordResponse>(response);
         if (!response.ok) {
             console.log(`Failed to send forgot password email (Status: ${response.status})`);
-            return null;
+            return { ...forgotPasswordResponseData, status: response.status };
         }
 
-        const forgotPasswordResponseData = await response.json();
-        return forgotPasswordResponseData as ForgotPasswordResponse;
+        return { ...forgotPasswordResponseData, status: response.status, title: "Password reset email sent." };
     } catch (error) {
         console.error('Error fetching member:', error);
         return null;
     }
 }
 
-interface ResetPasswordRequest {
+export interface ResetPasswordRequest {
     loginName?: string | null;
     token?: string | null;
     newPassword?: string | null;
 }
 
-interface ResetPasswordResponse {
-    description: string;
-    // You can define additional properties if needed based on the actual response schema
+export interface ResetPasswordResponse {
+    type: string;
+    title: string;
+    status: number;
+    traceId: string;
+    errors: ValidationError;
 }
 
-async function resetPassword(request: ResetPasswordRequest): Promise<ResetPasswordResponse | null> {
+export async function resetPassword(request: ResetPasswordRequest): Promise<ResetPasswordResponse | null> {
     try {
-        const response = await fetch(`${baseUrl}/api/member/resetPassword`, {
+        const response = await fetch(`${baseUrl}/api/member/reset-password`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -114,8 +116,8 @@ async function resetPassword(request: ResetPasswordRequest): Promise<ResetPasswo
             return null;
         }
 
-        const resetPasswordResponseData = await response.json();
-        return resetPasswordResponseData as ResetPasswordResponse;
+        const resetPasswordResponseData = await parseResponse<ResetPasswordResponse>(response);
+        return { ...resetPasswordResponseData, status: response.status, title: "Password changed." };
     } catch (error) {
         console.error('Error fetching member:', error);
         return null;

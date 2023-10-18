@@ -2,10 +2,11 @@
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import Snackbar from "../Snackbar/Snackbar";
-import { RegisterMemberResponse } from "@/lib/services/MemberService";
+import { ForgotPasswordResponse } from "@/lib/services/MemberService";
+import { parseResponse } from "@/lib/utils";
 import LoadingForm from "./LoadingForm";
 
-export const RegisterForm = () => {
+export const ForgotPasswordForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showSnackBar, setShowSnackBar] = useState(false);
@@ -17,25 +18,20 @@ export const RegisterForm = () => {
 
   const [formValues, setFormValues] = useState({
     loginName: "",
-    email: "",
-    password: "",
   });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     const formData = new FormData(event.currentTarget);
-    // const requestBody = Object.fromEntries(formData);
     const requestBody = {
       loginName: formData.get("loginName"),
-      email: formData.get("email"),
-      password: formData.get("password"),
     };
 
-    setFormValues({ loginName: "", email: "", password: "" });
+    setFormValues({ loginName: "" });
 
     try {
-      const response = await fetch("/api/register", {
+      const response = await fetch("/api/forgot-password", {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {
@@ -43,16 +39,14 @@ export const RegisterForm = () => {
         },
       });
 
-      const responseBody = (await response.json()) as RegisterMemberResponse;
+      const responseBody = await parseResponse<ForgotPasswordResponse>(
+        response
+      );
 
       setLoading(false);
-      if (!response.ok) {
-        setSnackBarText(responseBody.title);
-        setShowSnackBar(true);
-        return;
-      }
 
-      router.push("/login");
+      setSnackBarText(responseBody.title);
+      setShowSnackBar(true);
     } catch (error: any) {
       setLoading(false);
       setSnackBarText(error);
@@ -76,21 +70,6 @@ export const RegisterForm = () => {
       <form action="" onSubmit={handleSubmit} className="space-y-12">
         <div className="space-y-4">
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              value={formValues.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
-            />
-          </div>
-          <div>
             <label htmlFor="loginName" className="block mb-2 text-sm">
               Channel Name / Login Name
             </label>
@@ -104,23 +83,6 @@ export const RegisterForm = () => {
               className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
             />
           </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <label htmlFor="password" className="text-sm">
-                Password
-              </label>
-            </div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              value={formValues.password}
-              onChange={handleChange}
-              placeholder="*****"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
-            />
-          </div>
         </div>
         <div className="space-y-2">
           <div>
@@ -128,7 +90,7 @@ export const RegisterForm = () => {
               type="submit"
               className="w-full px-8 py-3 font-semibold rounded-md bg-teal-600 text-gray-50"
             >
-              Register
+              Sent Reset Password Link
             </button>
           </div>
         </div>

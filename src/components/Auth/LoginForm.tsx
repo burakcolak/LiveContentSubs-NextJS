@@ -3,6 +3,7 @@ import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Snackbar from "@/components/Snackbar/Snackbar";
+import LoadingForm from "./LoadingForm";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -29,34 +30,22 @@ const LoginForm = () => {
       ...credentials,
     });
 
-    console.log("logiiiin", result);
-    setLoading(false);
     if (result?.error) {
       console.error("Authentication failed");
+      setLoading(false);
       setSnackBarText("Authentication failed, please try again.");
       setShowSnackBar(true);
     } else {
-      // Redirect or show a success message
-      router.push("/");
+      setLoading(false);
+      setSnackBarText("Login successful, redirecting...");
+      //router.push("/");
+      setTimeout(() => {
+        router.push("/");
+      }, 1500);
     }
   };
 
-  if (loading)
-    return (
-      <div>
-        <div className="h-48 rounded-t bg-gray-300"></div>
-        <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-50">
-          <div className="flex items-center justify-center space-x-8">
-            <div className="w-4 h-4 rounded-full animate-ping bg-teal-600"></div>
-            <div className="w-4 h-4 rounded-full animate-ping bg-teal-600"></div>
-            <div className="w-4 h-4 rounded-full animate-ping bg-teal-600"></div>
-          </div>
-          <div className="w-full h-6 rounded bg-gray-300"></div>
-          <div className="w-full h-6 rounded bg-gray-300"></div>
-          <div className="w-3/4 h-6 rounded bg-gray-300"></div>
-        </div>
-      </div>
-    );
+  if (loading) return <LoadingForm />;
 
   return (
     <div>
@@ -86,7 +75,7 @@ const LoginForm = () => {
               </label>
               <a
                 rel="noopener noreferrer"
-                href="#"
+                href="/forgot-password"
                 className="text-xs hover:underline text-gray-600"
               >
                 Forgot password?

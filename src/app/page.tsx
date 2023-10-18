@@ -13,14 +13,14 @@ import Faq from "@/components/Sections/Faq";
 export default function Home() {
   return (
     <main>
-      <div className="container mx-auto space-y-16">
+      <div className="container mx-auto">
         <section>
           <h2 className="text-5xl font-bold lg:text-center text-gray-900">
             Be discoverable with the
             <br />
             Twitch Viewer Bot!
           </h2>
-          <span className="block py-4 mb-2 text-xs font-medium tracki uppercase lg:text-center text-teal-600">
+          <span className="block py-4 mb-2 font-medium uppercase lg:text-center text-teal-600">
             Use our viewbotting on twitch and chat bot to hype your channel
             <br />
             and meet the most professional twitch view bot ever developed.

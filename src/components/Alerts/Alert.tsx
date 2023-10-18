@@ -27,12 +27,12 @@ const getClassByAlertTheme = (theme: AlertTheme) => {
   }
 };
 
-const Alert: React.FC<Props> = ({
+const Alert = ({
   title,
   description,
   theme,
   className,
-}: Props) => {
+}: Props): JSX.Element => {
   return (
     <div
       className={`flex flex-col p-4 ${className} ${getClassByAlertTheme(

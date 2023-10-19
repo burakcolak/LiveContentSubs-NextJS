@@ -16,7 +16,8 @@ module.exports = {
         primary: '#3490dc',
         secondary: '#ffed4a',
         'twitch-blue':'#037EF3',
-        'trovo-green':'#38AB5C'
+        'trovo-green':'#4BB36C',
+        'kick-green':'#39C338'
         // Add your custom colors here
       },
     },

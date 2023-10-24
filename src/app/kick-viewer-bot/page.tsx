@@ -15,7 +15,7 @@ import { Metadata } from "next";
 import React from "react";
 import Image from "next/image";
 import KickBotTwoIcon from "@/components/Icons/KickBotTwoIcon";
-import Cart from "./components/Cart";
+import Cart from "@/components/Cart/Cart";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -267,9 +267,7 @@ async function Kick() {
                   />
                 </div>
                 <div className="space-y-1 mx-12">
-                  <h3 className="my-3 text-3xl font-semibold">
-                    Instant Activation
-                  </h3>
+                  <h3 className="text-3xl font-semibold">Instant Activation</h3>
                   <p>
                     When you 'buy a kick views bot' it activates instantly. Just
                     click on Bot Control.
@@ -286,9 +284,7 @@ async function Kick() {
                   />
                 </div>
                 <div className="space-y-1 mx-12">
-                  <h3 className="my-3 text-3xl font-semibold">
-                    24/7 Live Support
-                  </h3>
+                  <h3 className="text-3xl font-semibold">24/7 Live Support</h3>
                   <p>
                     Our operators answer your questions about "buy kick views"
                     around the clock.

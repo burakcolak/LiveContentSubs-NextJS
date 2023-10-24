@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   ProductListResponse,
@@ -8,9 +9,10 @@ import { ProductListUtilities } from "./ProductListUtilities";
 type Props = {
   product: ProductListResponse;
   key: string;
+  handlePurchase: (productId: string) => void;
 };
 
-function ProductBox({ product }: Props) {
+function ProductBox({ product, handlePurchase }: Props) {
   if (product == null) return <div></div>;
 
   return (
@@ -23,12 +25,15 @@ function ProductBox({ product }: Props) {
         <div className="ml-2 pt-3">
           <span className="text-3xl font-bold">${product?.price}</span>
           <span className="font-semibold">
-            {` /${product?.durationFactor}${product.durationType}`}
+            {` /${
+              product?.durationFactor === 1 ? "" : product?.durationFactor
+            }${product.durationType}`}
           </span>
         </div>
-        <p className="ml-2 my-6 text-sm font-bold ">Just try and observe</p>
+        <p className="ml-2 my-6 text-sm font-bold ">{product?.subtitle}</p>
         <ProductListUtilities utilities={product?.utilities} />
         <button
+          onClick={() => handlePurchase(product?.identifier)}
           type="button"
           className=" ml-2 mt-6 px-8 py-3 font-semibold rounded-md bg-primary text-gray-100"
         >

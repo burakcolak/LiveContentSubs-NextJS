@@ -1,6 +1,22 @@
-interface ShoppingCartResponse {
+import { getServerSession } from "next-auth";
+
+const baseUrl = process.env.API_URL ?? '';
+
+export interface ShoppingCartResponse {
     sessionId: string;
     totalAmount: number;
+    shoppingCartItems: ShoppingCartItem[];
+}
+
+export interface ShoppingCartItem {
+    product: Product;
+}
+
+export interface Product {
+    identifier: string;
+    title: string;
+    subtitle: string;
+    price: number;
 }
 
 ///get shopping cart
@@ -27,13 +43,8 @@ export async function getShoppingCart(bearerToken: string): Promise<ShoppingCart
     }
 }
 
-interface AddShoppingCartResponse {
-    sessionId: string;
-    totalAmount: number;
-}
-
 ///add shopping cart with productIdentity
-export async function addShoppingCart(productIdentity: string, bearerToken: string): Promise<AddShoppingCartResponse | null> {
+export async function addShoppingCart(productIdentity: string, bearerToken: string): Promise<ShoppingCartResponse | null> {
     try {
         const response = await fetch(`${baseUrl}/api/shoppingCart/${productIdentity}`, {
             method: 'POST',
@@ -49,7 +60,7 @@ export async function addShoppingCart(productIdentity: string, bearerToken: stri
         }
 
         const addShoppingCartResponseData = await response.json();
-        return addShoppingCartResponseData as AddShoppingCartResponse;
+        return addShoppingCartResponseData as ShoppingCartResponse;
     } catch (error) {
         console.error('Error fetching shopping cart:', error);
         return null;
@@ -133,3 +144,32 @@ export async function updateShoppingCartItemQuantity(request: UpdateShoppingCart
         return null;
     }
 }
+
+///purchase product with productIdentifier
+export async function purchaseProduct(productIdentifier: string): Promise<ShoppingCartResponse | null> {
+    const session = await getServerSession();
+    const bearerToken = session?.user?.email;
+    if (!bearerToken) return null;
+
+    const response = await fetch(`${baseUrl}/api/shoppingcart/purchase?productIdentifier=${productIdentifier}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${bearerToken}`,
+        },
+    });
+    if (!response.ok) {
+        if (response.status === 401) {
+            throw 401;
+        }
+
+        console.log(`Failed to purchase product (Status: ${response.status})`);
+        return null;
+    }
+
+    const purchaseProductResponseData = await response.json();
+    return purchaseProductResponseData as ShoppingCartResponse;
+
+}
+
+

@@ -29,6 +29,7 @@ export async function getMembershipList(): Promise<MembershipListResponse[] | nu
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${bearerToken}`,
             },
+            cache: 'no-cache'
         });
 
         if (!response.ok) {

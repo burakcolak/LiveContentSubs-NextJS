@@ -112,6 +112,7 @@ export async function checkout(request: CheckoutRequest, bearerToken: string): P
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${bearerToken}`,
             },
+            cache: 'no-cache',
             body: JSON.stringify(request),
         });
 

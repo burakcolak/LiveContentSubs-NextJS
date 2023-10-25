@@ -26,6 +26,8 @@ function ProductsList({ products }: Props) {
       );
 
       if (response.status === 401) router.push("/login");
+
+      router.push("/checkout");
     } catch (error: any) {
       if (error === 401) router.push("/login");
     }

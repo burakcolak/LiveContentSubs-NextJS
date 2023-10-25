@@ -20,7 +20,12 @@ export interface Product {
 }
 
 ///get shopping cart
-export async function getShoppingCart(bearerToken: string): Promise<ShoppingCartResponse | null> {
+export async function getShoppingCart(): Promise<ShoppingCartResponse | null> {
+    console.log('get shopping cart');
+    const session = await getServerSession();
+    const bearerToken = session?.user?.email;
+    if (!bearerToken) return null;
+
     try {
         const response = await fetch(`${baseUrl}/api/shoppingCart`, {
             method: 'GET',
@@ -28,9 +33,14 @@ export async function getShoppingCart(bearerToken: string): Promise<ShoppingCart
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${bearerToken}`,
             },
+            cache: 'no-cache'
         });
 
         if (!response.ok) {
+
+            // if (response.status === 401) {
+            //     throw 401;
+            // }
             console.log(`Failed to get shopping cart (Status: ${response.status})`);
             return null;
         }
@@ -92,21 +102,28 @@ export async function deleteShoppingCartItem(productIdentity: string, bearerToke
 }
 
 ///empty shopping cart
-export async function emptyShoppingCart(bearerToken: string): Promise<boolean | null> {
+export async function emptyShoppingCart(): Promise<boolean | null> {
+    const session = await getServerSession();
+    const bearerToken = session?.user?.email;
+    if (!bearerToken) return null;
+
     try {
-        const response = await fetch(`${baseUrl}/api/empty-shopping-cart`, {
+        const response = await fetch(`${baseUrl}/api/shoppingcart/empty-shopping-cart`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${bearerToken}`,
             },
+            cache: 'no-cache',
         });
         if (!response.ok) {
             console.log(`Failed to empty shopping cart (Status: ${response.status})`);
             return null;
         }
 
+
         const emptyShoppingCartResponseData = await response.json();
+        console.log('service response', emptyShoppingCartResponseData)
         return emptyShoppingCartResponseData as boolean;
     }
     catch (error) {

@@ -9,7 +9,7 @@ export enum OrderStatus {
 }
 
 export const OrderStatusDisplayNames: { [key in OrderStatus]: string } = {
-    [0]: "Waiting For Payment Intent",
+    [OrderStatus.WaitingForPaymentIntent]: "Waiting For Payment Intent",
     [OrderStatus.PaymentIntent]: "Payment Intent",
     [OrderStatus.PaymentFailed]: "Payment Failed",
     [OrderStatus.PaymentCompleted]: "Payment Completed",

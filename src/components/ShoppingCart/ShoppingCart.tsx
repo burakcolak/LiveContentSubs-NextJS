@@ -9,6 +9,7 @@ import Link from "next/link";
 import { parseResponse } from "@/lib/utils";
 import { CheckoutResponse } from "@/lib/services/OrderService";
 import { useRouter } from "next/navigation";
+import { getProductTypeDisplayName } from "@/models/productType";
 type Props = {
   shoppingCart: ShoppingCartResponse | null;
 };
@@ -69,15 +70,22 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
           ) : (
             <div className="divide-y space-y-2">
               <div>
-                <h2 className="text-2xl font-semibold">Order items</h2>
-                <ul className="flex flex-col pt-4 space-y-2">
+                <h2 className="text-3xl font-bold">Order detail</h2>
+                <ul className="flex flex-col pt-8 space-y-2">
                   {shoppingCart.shoppingCartItems.map((item) => {
                     return (
                       <li
                         className="flex items-start justify-between"
                         key={item.product?.identifier}
                       >
-                        <h3>{item.product?.title}</h3>
+                        <div className="space-y-1">
+                          <h3 className="text-lg font-semibold leadi sm:pr-8">
+                            {getProductTypeDisplayName(item.product?.type)}
+                          </h3>
+                          <p className="text-sm text-gray-600">
+                            {item.product?.title}
+                          </p>
+                        </div>
                         <div className="text-right my-1">
                           <span className="block">${item.product?.price}</span>
                         </div>

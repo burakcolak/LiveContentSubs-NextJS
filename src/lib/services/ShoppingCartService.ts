@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { parseResponse } from "../utils";
+import { ProductType } from "@/models/productType";
 
 const baseUrl = process.env.API_URL ?? '';
 
@@ -18,11 +19,11 @@ export interface Product {
     title: string;
     subtitle: string;
     price: number;
+    type: ProductType;
 }
 
 ///get shopping cart
 export async function getShoppingCart(): Promise<ShoppingCartResponse | null> {
-    console.log('get shopping cart');
     const session = await getServerSession();
     const bearerToken = session?.user?.email;
     if (!bearerToken) return null;

@@ -96,17 +96,21 @@ export async function getOrderList({ pageNumber = 1, pageSize = 10 }: { pageNumb
     }
 }
 
-interface CheckoutRequest {
+export interface CheckoutRequest {
 }
 
-interface CheckoutResponse {
+export interface CheckoutResponse {
     clientSecret: string;
 }
 
 ///checkout
-export async function checkout(request: CheckoutRequest, bearerToken: string): Promise<CheckoutResponse | null> {
+export async function checkout(request: CheckoutRequest): Promise<CheckoutResponse | null> {
+    const session = await getServerSession();
+    const bearerToken = session?.user?.email;
+    if (!bearerToken) return null;
+
     try {
-        const response = await fetch(`${baseUrl}/api/order`, {
+        const response = await fetch(`${baseUrl}/api/order/checkout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -116,13 +120,14 @@ export async function checkout(request: CheckoutRequest, bearerToken: string): P
             body: JSON.stringify(request),
         });
 
+
         if (!response.ok) {
             console.log(`Failed to checkout (Status: ${response.status})`);
             return null;
         }
-
-        const checkoutResponseData = await response.json();
-        return checkoutResponseData as CheckoutResponse;
+        const clientSecret = await response.text();
+        const checkoutResponseData: CheckoutResponse = { clientSecret };
+        return checkoutResponseData;
     } catch (error) {
         console.error('Error fetching checkout:', error);
         return null;

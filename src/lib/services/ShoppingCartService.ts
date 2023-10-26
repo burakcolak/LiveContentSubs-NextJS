@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { parseResponse } from "../utils";
 
 const baseUrl = process.env.API_URL ?? '';
 
@@ -45,8 +46,8 @@ export async function getShoppingCart(): Promise<ShoppingCartResponse | null> {
             return null;
         }
 
-        const shoppingCartResponseData = await response.json();
-        return shoppingCartResponseData as ShoppingCartResponse;
+        const shoppingCartResponseData = await parseResponse<ShoppingCartResponse>(response);
+        return shoppingCartResponseData;
     } catch (error) {
         console.error('Error fetching shopping cart:', error);
         return null;

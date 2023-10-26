@@ -6,11 +6,16 @@ import { AuthProvider } from "../AuthProvider/AuthProvider";
 import { AuthOnly } from "../AuthOnly/AuthOnly";
 import FormContainer from "../Container/Container";
 import Link from "next/link";
+import { parseResponse } from "@/lib/utils";
+import { CheckoutResponse } from "@/lib/services/OrderService";
+import { useRouter } from "next/navigation";
 type Props = {
   shoppingCart: ShoppingCartResponse | null;
 };
 
 function ShoppingCart({ shoppingCart }: Props): JSX.Element {
+  const router = useRouter();
+
   async function handleEmptyCartButtonClick(event: any): Promise<void> {
     try {
       const response = await fetch(`/api/shopping-cart/empty`, {
@@ -21,10 +26,27 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
         cache: "no-cache",
       });
 
-      const responseJson = await response.json();
-      console.log("next client response", response, responseJson);
+      const responseJson = await parseResponse<boolean>(response);
+      if (responseJson) router.refresh(); //TODO: do not refresh, but update state?
     } catch (error) {
-      console.log("next client error", error);
+      console.log("error emptying cart", error);
+    }
+  }
+
+  async function handleCheckoutButtonClick(event: any): Promise<void> {
+    try {
+      const response = await fetch(`/api/shopping-cart/checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      });
+
+      const responseJson = await parseResponse<CheckoutResponse>(response);
+      router.push(`/checkout/client=${responseJson.clientSecret}`);
+    } catch (error) {
+      console.log("error checking out", error);
     }
   }
 
@@ -83,6 +105,7 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
                     <button
                       type="button"
                       className="px-2 py-2 font-semibold border rounded bg-teal-600 text-gray-50 border-teal-600"
+                      onClick={handleCheckoutButtonClick}
                     >
                       Go to checkout
                     </button>

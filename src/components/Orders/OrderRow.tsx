@@ -31,14 +31,14 @@ const OrderRow = ({ order }: Props) => {
           label={getOrderStatusDisplayName(order.status)}
         />
       </td>
-      <td>
+      {/* <td>
         <button
           disabled
           className="px-3 py-1 font-semibold rounded-md bg-teal-600 text-gray-50"
         >
           <span>View</span>
         </button>
-      </td>
+      </td> */}
     </tr>
   );
 };

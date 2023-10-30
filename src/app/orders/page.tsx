@@ -1,5 +1,7 @@
 import React from "react";
 import OrderList from "@/components/Orders/OrderList";
+import { AuthProvider } from "@/components/AuthProvider/AuthProvider";
+import { AuthOnly } from "@/components/AuthOnly/AuthOnly";
 
 type Props = {
   searchParams: { [key: string]: string | string | string[] | undefined };
@@ -11,7 +13,11 @@ const MyOrders = async ({ searchParams }: Props) => {
     : 10;
   return (
     <>
-      <OrderList pageNumber={page} pageSize={pageSize} />
+      <AuthProvider>
+        <AuthOnly>
+          <OrderList pageNumber={page} pageSize={pageSize} />
+        </AuthOnly>
+      </AuthProvider>
     </>
   );
 };

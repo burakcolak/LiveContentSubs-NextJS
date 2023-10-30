@@ -17,8 +17,11 @@ module.exports = {
         secondary: '#ffed4a',
         'twitch-blue':'#037EF3',
         'trovo-green':'#4BB36C',
-        'kick-green':'#39C338'
-        // Add your custom colors here
+        'kick-green':'#39C338',        
+        stripe:
+        {
+          'elements-color': '#6772e5',
+        }
       },
     },
   },

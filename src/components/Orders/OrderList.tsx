@@ -2,6 +2,7 @@ import React from "react";
 import { getOrderList } from "@/lib/services/OrderService";
 import OrderRow from "./OrderRow";
 import Pagination from "../Pagination/Pagination";
+import EmptyView from "../Box/EmptyView";
 
 type Props = {
   pageNumber: number;
@@ -20,7 +21,7 @@ const OrderList: (props: Props) => Promise<JSX.Element> = async ({
     orderResponse.orders.length === 0 ||
     orderResponse.totalCount === 0
   ) {
-    return <div>No orders found</div>;
+    return <EmptyView message="No orders found" />;
   }
 
   const orders = orderResponse.orders;
@@ -37,7 +38,7 @@ const OrderList: (props: Props) => Promise<JSX.Element> = async ({
                 <th className="p-3">Checkout Date</th>
                 <th className="p-3 text-right">Amount</th>
                 <th className="p-3 text-center">Status</th>
-                <th className="p-3">Details</th>
+                {/* <th className="p-3">Details</th> */}
               </tr>
             </thead>
             <tbody>

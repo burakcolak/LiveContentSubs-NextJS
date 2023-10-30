@@ -43,9 +43,8 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
         },
         cache: "no-cache",
       });
-
       const responseJson = await parseResponse<CheckoutResponse>(response);
-      router.push(`/checkout/client=${responseJson.clientSecret}`);
+      router.push(`/checkout?order=${responseJson.orderIdentifier}`);
     } catch (error) {
       console.log("error checking out", error);
     }
@@ -75,7 +74,7 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
                   {shoppingCart.shoppingCartItems.map((item) => {
                     return (
                       <li
-                        className="flex items-start justify-between"
+                        className="flex items-end justify-between"
                         key={item.product?.identifier}
                       >
                         <div className="space-y-1">
@@ -94,7 +93,7 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
                   })}
                 </ul>
               </div>
-              <div className="pt-4 space-y-2 ">
+              <div className="pt-4 space-y-2">
                 <div className="space-y-6 ">
                   <div className="flex justify-between">
                     <span>Total</span>

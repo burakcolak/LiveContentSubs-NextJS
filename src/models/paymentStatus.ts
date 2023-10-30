@@ -1,4 +1,5 @@
 export enum PaymentStatus {
-    Incomplete = 0,
-    Completed = 1,
+    PaymentIntent = 0,
+    PaymentSuccess = 1,
+    PaymentFailed = 2,
 }

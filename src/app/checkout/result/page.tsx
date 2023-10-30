@@ -1,7 +1,6 @@
 import EmptyView from "@/components/Box/EmptyView";
-import { getLastPaymentIntent } from "@/lib/services/PaymentService";
+import { getLastCompletedPaymentIntent } from "@/lib/services/PaymentService";
 import { PaymentStatus } from "@/models/paymentStatus";
-import { PaymentType } from "@/models/paymentType";
 import Link from "next/link";
 
 export default async function ResultPage({
@@ -11,13 +10,16 @@ export default async function ResultPage({
 }): Promise<JSX.Element> {
   if (!searchParams.payment_intent) <EmptyView message="Payment not found" />;
 
-  const payment = await getLastPaymentIntent(searchParams.payment_intent);
+  //wait 2 seconds to make sure the payment is completed
+  //TODO: add loading component
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const payment = await getLastCompletedPaymentIntent(
+    searchParams.payment_intent
+  );
+
   if (!payment) <EmptyView message="Payment not found" />;
 
-  if (
-    payment?.status === PaymentStatus.Completed &&
-    payment?.type === PaymentType.PaymentCompleted
-  ) {
+  if (payment?.status === PaymentStatus.PaymentSuccess) {
     return (
       <section className="bg-gray-50 text-gray-800">
         <div className="container mx-auto flex flex-col items-center px-4 py-8 text-center md:py-16 md:px-10 lg:px-32 xl:max-w-3xl">

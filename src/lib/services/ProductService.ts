@@ -14,6 +14,7 @@ export interface ProductListResponse {
 
 export interface UtilityListResponse {
     name: string;
+    title: string;
 }
 
 ///get ptoduct by product type

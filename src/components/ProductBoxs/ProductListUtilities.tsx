@@ -13,11 +13,11 @@ export const ProductListUtilities: React.FC<Props> = ({ utilities }) => {
   return utilities?.map((productUtility) => {
     return (
       <ul
-        key={productUtility.name}
+        key={productUtility.title}
         className="list-none mt-2 font-bold ml-2 space-y-4"
       >
-        <li key={productUtility.name}>
-          <span className="text-black">{productUtility.name}</span>
+        <li key={productUtility.title}>
+          <span className="text-black">{productUtility.title}</span>
         </li>
       </ul>
     );

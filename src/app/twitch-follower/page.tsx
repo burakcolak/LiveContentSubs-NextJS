@@ -14,24 +14,37 @@ export async function generateMetadata(): Promise<Metadata> {
 async function Follower() {
   const products = await getProductList(ProductType.TwitchFollower);
   return (
-    <div>
-      <div className="container">
-        <h1>Fast and Safe Viewbotting on Twitch Service</h1>
-        <br />
-        <ProductsList products={products} />
+    <main>
+      <div className="container mx-auto">
+        <section className="bg-gray-50 pt-8">
+          <h2 className="text-7xl font-bold lg:text-center text-black-500">
+            <p>Twitch Followers</p>
+          </h2>
+          <div className="flex justify-center">
+            <div className="grid grid-cols-3 gap-8 w-2/3 py-12">
+              <ProductsList products={products} />
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <div className="font-bold flex flex-col w-2/3 space-y-2 mb-8">
+              <p>Followers reach your channel in an average of 30 minutes.</p>
+              <p>
+                Some of the accounts have a profile picture. Some do not. In
+                this way, they look organic.
+              </p>
+              <p>
+                You can forward all your questions to our customer services.
+              </p>
+              <p>
+                Follower accounts can be block/shut down and dropped by twitch
+                over the years. There is no guarantee.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
-
-// export async function getStaticProps() {
-//   const products = await getProductList(ProductType.TwitchFollower);
-//   return {
-//     props: {
-//       products,
-//     },
-//     revalidate: 3600,
-//   };
-// }
 
 export default Follower;

@@ -24,11 +24,13 @@ function ProductBox({ product, handlePurchase }: Props) {
         </span>
         <div className="ml-2 pt-3">
           <span className="text-3xl font-bold">${product?.price}</span>
-          <span className="font-semibold">
-            {` /${
-              product?.durationFactor === 1 ? "" : product?.durationFactor
-            }${product.durationType}`}
-          </span>
+          {product?.durationType !== "None" && (
+            <span className="font-semibold">
+              {` / ${
+                product?.durationFactor === 1 ? "" : product?.durationFactor
+              } ${product.durationType}`}
+            </span>
+          )}
         </div>
         <p className="ml-2 my-6 text-sm font-bold ">{product?.subtitle}</p>
         <ProductListUtilities utilities={product?.utilities} />

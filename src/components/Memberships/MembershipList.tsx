@@ -1,12 +1,13 @@
 import React from "react";
 import { getMembershipList } from "@/lib/services/MembershipService";
 import MembershipRow from "./MembershipRow";
+import EmptyView from "../Box/EmptyView";
 
 const MembershipList: () => Promise<JSX.Element> = async () => {
   const memberships = await getMembershipList();
 
   if (!memberships || memberships.length === 0) {
-    return <div>No memberships found</div>;
+    <EmptyView message="No memberships found" />;
   }
 
   return (

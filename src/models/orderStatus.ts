@@ -13,7 +13,7 @@ export const OrderStatusDisplayNames: { [key in OrderStatus]: string } = {
     [OrderStatus.PaymentIntent]: "Payment Intent",
     [OrderStatus.PaymentFailed]: "Payment Failed",
     [OrderStatus.PaymentCompleted]: "Payment Completed",
-    [OrderStatus.MembershipCreated]: "Membership Created",
+    [OrderStatus.MembershipCreated]: "Order Completed",
     [OrderStatus.Refunded]: "Refunded",
     [OrderStatus.CancelledByMember]: "Cancelled by Member",
 };

@@ -124,10 +124,20 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/Memberships"
+                  href="/memberships"
                   className="hover:text-teal-600"
                 >
                   Memberships
+                </a>
+              </li>
+
+              <li>
+                <a
+                  rel="noopener noreferrer"
+                  href="/dashboard"
+                  className="hover:text-teal-600"
+                >
+                  Dashboard
                 </a>
               </li>
             </ul>

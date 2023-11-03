@@ -50,11 +50,13 @@ const OrderList: (props: Props) => Promise<JSX.Element> = async ({
           </table>
         </div>
       </div>
-      <Pagination
-        currentPage={pageNumber}
-        itemsPerPage={pageSize}
-        totalItems={orderResponse.totalCount}
-      />
+      {orderResponse.totalCount > pageSize && (
+        <Pagination
+          currentPage={pageNumber}
+          itemsPerPage={pageSize}
+          totalItems={orderResponse.totalCount}
+        />
+      )}
     </>
   );
 };

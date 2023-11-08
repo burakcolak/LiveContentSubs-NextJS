@@ -14,7 +14,7 @@ type Props = {
   shoppingCart: ShoppingCartResponse | null;
 };
 
-function ShoppingCart({ shoppingCart }: Props): JSX.Element {
+const ShoppingCart = ({ shoppingCart }: Props) => {
   const router = useRouter();
 
   async function handleEmptyCartButtonClick(event: any): Promise<void> {
@@ -78,7 +78,7 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
                         key={item.product?.identifier}
                       >
                         <div className="space-y-1">
-                          <h3 className="text-lg font-semibold leadi sm:pr-8">
+                          <h3 className="text-lg font-semibold  sm:pr-8">
                             {getProductTypeDisplayName(item.product?.type)}
                           </h3>
                           <p className="text-sm text-gray-600">
@@ -125,6 +125,6 @@ function ShoppingCart({ shoppingCart }: Props): JSX.Element {
       </AuthOnly>
     </AuthProvider>
   );
-}
+};
 
 export default ShoppingCart;

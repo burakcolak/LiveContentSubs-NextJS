@@ -1,4 +1,4 @@
-"use client"; //todo: use client or server ? handle method here or on page?
+"use client";
 import { ProductListResponse } from "@/lib/services/ProductService";
 import React from "react";
 import ProductBox from "./ProductBox";
@@ -8,7 +8,7 @@ type Props = {
   products: ProductListResponse[] | null;
 };
 
-function ProductsList({ products }: Props) {
+const ProductsList = ({ products }: Props) => {
   const router = useRouter();
 
   async function handlePurchase(productId: string) {
@@ -52,6 +52,6 @@ function ProductsList({ products }: Props) {
       )}
     </>
   );
-}
+};
 
 export default ProductsList;

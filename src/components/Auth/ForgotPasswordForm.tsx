@@ -1,13 +1,11 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import Snackbar from "../Snackbar/Snackbar";
 import { ForgotPasswordResponse } from "@/lib/services/MemberService";
 import { parseResponse } from "@/lib/utils";
 import LoadingForm from "./LoadingForm";
 
-export const ForgotPasswordForm = () => {
-  const router = useRouter();
+const ForgotPasswordForm = () => {
   const [loading, setLoading] = useState(false);
   const [showSnackBar, setShowSnackBar] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
@@ -98,3 +96,5 @@ export const ForgotPasswordForm = () => {
     </div>
   );
 };
+
+export default ForgotPasswordForm;

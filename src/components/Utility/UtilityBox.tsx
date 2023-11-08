@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Slider from "../Box/Slider";
+import Slider from "../Views/Slider";
 import { UtilityResponse } from "@/lib/services/MembershipService";
 
 type UtilityProps = {
@@ -23,14 +23,12 @@ const UtilityBox = ({
   const [isLoading, setIsLoading] = React.useState(false);
   function handleChange(sliderSelectedValue: number) {
     setSliderSelectedValue(sliderSelectedValue);
-    console.log(sliderSelectedValue);
   }
 
   async function handleButtonClick() {
     setIsLoading(true);
     const response = await botRequest(sliderSelectedValue, utilityIdentifier);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("waited response is ", response);
     setIsLoading(false);
   }
 

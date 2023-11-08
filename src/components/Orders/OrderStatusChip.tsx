@@ -5,7 +5,7 @@ type Props = {
   label: string;
 };
 
-const OrderStatusChip: React.FC<Props> = ({ color, label }) => {
+const OrderStatusChip = ({ color, label }: Props) => {
   return (
     <span
       className={`px-3 py-1 font-semibold rounded-md ${color} text-gray-50`}

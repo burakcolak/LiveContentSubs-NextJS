@@ -1,14 +1,3 @@
-// components/Footer.js
-import Link from "next/link";
-import {
-  HomeLink,
-  KickViewerLink,
-  TrovoViewerLink,
-  TwitchFollowerLink,
-  TwitchViewerLink,
-  YoutubeViewerLink,
-} from "../NavButtons/NavButtons";
-
 const Footer = () => {
   return (
     <footer className="py-6 bg-gray-50 text-gray-900">

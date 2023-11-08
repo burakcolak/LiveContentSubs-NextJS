@@ -1,4 +1,4 @@
-import EmptyView from "@/components/Box/EmptyView";
+import EmptyView from "@/components/Views/EmptyView";
 import { getLastCompletedPaymentIntent } from "@/lib/services/PaymentService";
 import { PaymentStatus } from "@/models/paymentStatus";
 import Link from "next/link";
@@ -23,9 +23,7 @@ export default async function ResultPage({
     return (
       <section className="bg-gray-50 text-gray-800">
         <div className="container mx-auto flex flex-col items-center px-4 py-8 text-center md:py-16 md:px-10 lg:px-32 xl:max-w-3xl">
-          <h1 className="text-4xl font-bold leadi sm:text-5xl">
-            Payment Succeeded!
-          </h1>
+          <h1 className="text-4xl font-bold sm:text-5xl">Payment Succeeded!</h1>
 
           <div className="flex flex-wrap pt-16 justify-center">
             <Link

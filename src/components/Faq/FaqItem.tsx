@@ -5,7 +5,7 @@ type Props = {
   answer: string;
 };
 
-export const FaqItem: React.FC<Props> = ({ question, answer }) => {
+const FaqItem = ({ question, answer }: Props) => {
   return (
     <details className="w-full border rounded-lg">
       <summary className="px-4 py-6 font-semibold focus:outline-none focus-visible:ri">
@@ -15,3 +15,5 @@ export const FaqItem: React.FC<Props> = ({ question, answer }) => {
     </details>
   );
 };
+
+export default FaqItem;

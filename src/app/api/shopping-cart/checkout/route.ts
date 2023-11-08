@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { NextApiRequest } from "next";
 import { checkout } from "@/lib/services/OrderService";
 
-
 export async function POST(req: NextApiRequest) {
 
     try {
@@ -15,16 +14,13 @@ export async function POST(req: NextApiRequest) {
                 { status: 500 }
             );
         }
-
-        console.log('checkout client result ', result)
-
         return new NextResponse(
             JSON.stringify(result),
             { status: 200 }
         );
 
     } catch (error: any) {
-        console.log(error)
+        console.log("Error on checkout route: ", error)
         if (error === 401)
             return new NextResponse(
                 JSON.stringify({

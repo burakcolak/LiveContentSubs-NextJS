@@ -5,9 +5,7 @@ type Props = {
   utilities: UtilityListResponse[] | null;
 };
 
-// export function ProductListUtilities( {utilities} :Props) {
-
-export const ProductListUtilities: React.FC<Props> = ({ utilities }) => {
+const ProductListUtilities = ({ utilities }: Props) => {
   if (utilities == null) return <></>;
 
   return utilities?.map((productUtility) => {
@@ -23,3 +21,5 @@ export const ProductListUtilities: React.FC<Props> = ({ utilities }) => {
     );
   });
 };
+
+export default ProductListUtilities;

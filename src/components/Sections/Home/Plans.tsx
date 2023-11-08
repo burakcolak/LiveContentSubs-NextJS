@@ -1,9 +1,9 @@
 import React from "react";
 import { ProductType } from "@/models/productType";
 import { getProductList } from "@/lib/services/ProductService";
-import ProductsList from "../ProductBoxs/ProductList";
+import ProductsList from "../../ProductBoxs/ProductList";
 
-async function Plans() {
+const PlanSection = async () => {
   const products = await getProductList(ProductType.TwitchViewerPlan);
   return (
     <section className="m-4 md:m-8 bg-gray-50 text-gray-800 py-8">
@@ -18,6 +18,6 @@ async function Plans() {
       </div>
     </section>
   );
-}
+};
 
-export default Plans;
+export default PlanSection;

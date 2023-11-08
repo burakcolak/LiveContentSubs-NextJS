@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
 import { NextApiRequest } from "next";
-import { emptyShoppingCart, purchaseProduct } from "@/lib/services/ShoppingCartService";
+import { emptyShoppingCart } from "@/lib/services/ShoppingCartService";
 
 
 export async function POST(req: NextApiRequest) {
     try {
 
         const result = await emptyShoppingCart();
-
-        console.log('result next api', result)
 
         if (!result) {
             return new NextResponse(
@@ -26,7 +24,7 @@ export async function POST(req: NextApiRequest) {
         );
 
     } catch (error: any) {
-        console.log(error)
+        console.log("Error on empty cart route: ", error)
         if (error === 401)
             return new NextResponse(
                 JSON.stringify({

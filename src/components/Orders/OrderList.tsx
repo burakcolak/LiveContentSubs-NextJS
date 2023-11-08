@@ -2,17 +2,14 @@ import React from "react";
 import { getOrderList } from "@/lib/services/OrderService";
 import OrderRow from "./OrderRow";
 import Pagination from "../Pagination/Pagination";
-import EmptyView from "../Box/EmptyView";
+import EmptyView from "../Views/EmptyView";
 
 type Props = {
   pageNumber: number;
   pageSize: number;
 };
 
-const OrderList: (props: Props) => Promise<JSX.Element> = async ({
-  pageNumber,
-  pageSize,
-}: Props) => {
+const OrderList = async ({ pageNumber, pageSize }: Props) => {
   const orderResponse = await getOrderList({ pageNumber: pageNumber });
 
   if (

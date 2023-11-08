@@ -1,4 +1,4 @@
-import { FaqItem } from "@/components/Faq/FaqItem";
+import FaqItem from "@/components/Faq/FaqItem";
 import React from "react";
 
 const faqPage = () => {

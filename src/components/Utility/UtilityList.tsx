@@ -2,14 +2,14 @@
 import React from "react";
 import UtilityBox from "./UtilityBox";
 import { UtilityResponse } from "@/lib/services/MembershipService";
-import EmptyView from "../Box/EmptyView";
+import EmptyView from "../Views/EmptyView";
 import { createBotRequest } from "@/lib/services/BotRequestService";
 
 type Props = {
   utilities: UtilityResponse[];
 };
 
-function UtilityList({ utilities }: Props) {
+const UtilityList = ({ utilities }: Props) => {
   async function createBotRequest(
     viewerCount: number,
     utilityIdentifier: string
@@ -24,11 +24,9 @@ function UtilityList({ utilities }: Props) {
       });
 
       if (response.status === 200) {
-        console.log("response success", response);
         return true;
       }
 
-      console.log("button clicked", viewerCount, utilityIdentifier, response);
       return false;
     } catch (error: any) {
       console.log("Error creating bot request", error);
@@ -55,6 +53,6 @@ function UtilityList({ utilities }: Props) {
       )}
     </>
   );
-}
+};
 
 export default UtilityList;

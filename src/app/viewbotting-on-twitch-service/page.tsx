@@ -114,7 +114,7 @@ export default async function Twitch() {
           <section className="py-6  text-gray-900">
             <div className="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row">
               <div className="flex flex-col space-y-4 text-center lg:text-left">
-                <h1 className="text-3xl font-bold leadi">
+                <h1 className="text-3xl font-bold">
                   What is the View Bot Twitch?
                 </h1>
                 <p className="text-lg">

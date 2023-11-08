@@ -1,4 +1,4 @@
-import Box from "@/components/Box/Box";
+import Box from "@/components/Views/Box";
 import {
   faCircleCheck,
   faClockRotateLeft,

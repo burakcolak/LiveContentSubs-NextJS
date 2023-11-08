@@ -33,7 +33,7 @@ export async function POST(req: NextApiRequest) {
         );
 
     } catch (error: any) {
-        console.log(error)
+        console.log("Error on purchase product route: ", error)
         if (error === 401)
             return new NextResponse(
                 JSON.stringify({

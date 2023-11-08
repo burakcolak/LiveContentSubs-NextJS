@@ -29,7 +29,7 @@ async function Kick() {
   return (
     <main>
       <div className="container mx-auto">
-        <section className=" bg-kick-green">
+        <section className="bg-kick-green pt-8">
           <h2 className="text-5xl font-bold lg:text-center text-white">
             <p>Enhance your Kick Channel</p>
             <p>with the Best Kick Viewer Bot Service</p>
@@ -37,18 +37,15 @@ async function Kick() {
           <span className="block py-6 mb-2 font-medium lg:text-center text-white">
             #1 Number Kick Viewer Bot Service
           </span>
-          <h1></h1>
           <div className="grid gap-4 px-32 py-16 lg:grid-cols-3">
             <div className="flex">
               <div className="w-1/5">
                 <FlameIcon />
               </div>
               <div className="w-4/5">
-                <div>
-                  <h1 className="my-3 text-3xl font-semibold text-white">
-                    Instant Activation
-                  </h1>
-                </div>
+                <h1 className="my-3 text-3xl font-semibold text-white">
+                  Instant Activation
+                </h1>
                 <div className="text-white">
                   Kick bot system is automation. You can access the panel as
                   soon as you purchase the package.
@@ -60,11 +57,9 @@ async function Kick() {
                 <ChartIcon />
               </div>
               <div className="w-4/5">
-                <div>
-                  <h1 className="my-3 text-3xl font-semibold text-white">
-                    Stable and Fast
-                  </h1>
-                </div>
+                <h1 className="my-3 text-3xl font-semibold text-white">
+                  Stable and Fast
+                </h1>
                 <div className="text-white">
                   The stability rate of our view botting Kick service is 90%.
                   There is no sudden decrease or increase.
@@ -76,11 +71,9 @@ async function Kick() {
                 <LockIcon />
               </div>
               <div className="w-4/5">
-                <div>
-                  <h1 className="my-3 text-3xl font-semibold text-white">
-                    Safe %100
-                  </h1>
-                </div>
+                <h1 className="my-3 text-3xl font-semibold text-white">
+                  Safe %100
+                </h1>
                 <div className="text-white">
                   Our viewbotting on Twitch service is 100% Legit. We provide a
                   No-Ban Guarantee.
@@ -371,15 +364,5 @@ async function Kick() {
     </main>
   );
 }
-
-// export async function getStaticProps() {
-//   const products = await getProductList(ProductType.KickViewerPlan);
-//   return {
-//     props: {
-//       products,
-//     },
-//     revalidate: 3600,
-//   };
-// }
 
 export default Kick;

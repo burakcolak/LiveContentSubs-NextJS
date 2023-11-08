@@ -3,7 +3,7 @@ import ElementsForm from "./components/ElementsForm";
 import { getPaymentIntent } from "@/lib/services/PaymentService";
 import { AuthProvider } from "@/components/AuthProvider/AuthProvider";
 import { AuthOnly } from "@/components/AuthOnly/AuthOnly";
-import EmptyView from "@/components/Box/EmptyView";
+import EmptyView from "@/components/Views/EmptyView";
 
 type Props = {
   searchParams: { [key: string]: string | string | string[] | undefined };

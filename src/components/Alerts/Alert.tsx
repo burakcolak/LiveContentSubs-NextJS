@@ -27,12 +27,7 @@ const getClassByAlertTheme = (theme: AlertTheme) => {
   }
 };
 
-const Alert = ({
-  title,
-  description,
-  theme,
-  className,
-}: Props): JSX.Element => {
+const Alert = ({ title, description, theme, className }: Props) => {
   return (
     <div
       className={`flex flex-col p-4 ${className} ${getClassByAlertTheme(

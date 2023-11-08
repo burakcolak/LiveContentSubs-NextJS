@@ -5,7 +5,7 @@ import Snackbar from "../Snackbar/Snackbar";
 import { RegisterMemberResponse } from "@/lib/services/MemberService";
 import LoadingForm from "./LoadingForm";
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showSnackBar, setShowSnackBar] = useState(false);
@@ -25,7 +25,6 @@ export const RegisterForm = () => {
     event.preventDefault();
     setLoading(true);
     const formData = new FormData(event.currentTarget);
-    // const requestBody = Object.fromEntries(formData);
     const requestBody = {
       loginName: formData.get("loginName"),
       email: formData.get("email"),
@@ -136,3 +135,5 @@ export const RegisterForm = () => {
     </div>
   );
 };
+
+export default RegisterForm;

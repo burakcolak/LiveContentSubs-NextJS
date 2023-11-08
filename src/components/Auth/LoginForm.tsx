@@ -39,7 +39,6 @@ const LoginForm = () => {
       setLoading(false);
       setShowSnackBar(true);
       setSnackBarText("Login successful, redirecting...");
-      //router.push("/");
       setTimeout(() => {
         router.push("/");
       }, 1500);

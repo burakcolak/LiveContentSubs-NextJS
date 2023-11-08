@@ -11,7 +11,7 @@ type Props = {
 const Snackbar = ({ text, link, handleClose }: Props) => {
   return (
     <div className="flex flex-row pl-4 py-2 gap-2 items-center border rounded-lg shadow overflow-hidden bg-gray-50 border-teal-600">
-      <span className="flex-shrink-0 inline-flex mx-3 item-center justify-center leadi rounded-full bg-teal-600 text-gray-50">
+      <span className="flex-shrink-0 inline-flex mx-3 item-center justify-center  rounded-full bg-teal-600 text-gray-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"

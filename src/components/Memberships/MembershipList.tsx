@@ -1,14 +1,22 @@
 import React from "react";
 import { getMembershipList } from "@/lib/services/MembershipService";
 import MembershipRow from "./MembershipRow";
-import EmptyView from "../Box/EmptyView";
+import EmptyView from "../Views/EmptyView";
 
-const MembershipList: () => Promise<JSX.Element> = async () => {
+const MembershipList = async () => {
   const memberships = await getMembershipList();
 
   if (!memberships || memberships.length === 0) {
     <EmptyView message="No memberships found" />;
   }
+
+  const headers = [
+    { label: "Id#", key: "id" },
+    { label: "Utility Name", key: "utilityName" },
+    { label: "Min/Max Count", key: "minMaxCount" },
+    { label: "Start Date", key: "startDate" },
+    { label: "End Date", key: "endDate" },
+  ];
 
   return (
     <>
@@ -18,11 +26,11 @@ const MembershipList: () => Promise<JSX.Element> = async () => {
           <table className="min-w-full text-xs">
             <thead className="bg-gray-300">
               <tr className="text-left">
-                <th className="p-3">Id#</th>
-                <th className="p-3">Utility Name</th>
-                <th className="p-3">Min/Max Count</th>
-                <th className="p-3">Start Date</th>
-                <th className="p-3">End Date</th>
+                {headers.map((header) => (
+                  <th key={header.key} className="p-3">
+                    {header.label}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>

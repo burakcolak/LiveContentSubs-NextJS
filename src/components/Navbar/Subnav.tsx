@@ -24,8 +24,7 @@ const Subnav = () => {
           </a>
         </div>
         {/* TODO: handle expired token & session */}
-        {/* {session && session.user ? <MemberNav /> : <AuthenticationNav />} */}
-        <MemberNav /> <AuthenticationNav />
+        {session && session.user ? <MemberNav /> : <AuthenticationNav />}
       </div>
     </div>
   );

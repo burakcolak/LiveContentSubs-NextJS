@@ -50,24 +50,24 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt(params: { token: JWT, user: User | any, account: Account | null, profile?: Profile, isNewUser?: boolean }): Promise<JWT> {
-      const { token, user, account, profile, isNewUser } = params;
-      // console.log("user", user);
+      const { token, user } = params;
       if (user) {
         token.accessToken = user.token;
       }
-      //console.log("jwt", token);
       return token;
     },
     async session(params: { session: Session, token: JWT }): Promise<Session> {
       const { session, token } = params;
-      if (session.user)
+      if (session.user) {
         session.user.token = token.accessToken;
-
+      }
       return session;
     }
   },
   pages: {
     signIn: "/login",
-    signOut: "/logout",
   },
+  theme: {
+    brandColor: "#0d9488",
+  }
 };

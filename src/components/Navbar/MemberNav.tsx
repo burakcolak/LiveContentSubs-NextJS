@@ -9,6 +9,9 @@ const MemberNav = () => {
       <a className="text-black font-bold text-sm pl-2" href="/orders">
         <span>My Orders</span>
       </a>
+      <a className="text-black font-bold text-sm pl-2" href="api/auth/signout">
+        <span>Logout</span>
+      </a>
     </div>
   );
 };

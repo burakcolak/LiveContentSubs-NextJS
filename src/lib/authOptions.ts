@@ -32,11 +32,11 @@ export const authOptions: NextAuthOptions = {
               password: credentials?.password,
             },
           });
-          // TODO: return proper user info
-          // TODO: http://localhost:3000/session
 
-          const user: User = { id: 1, name: "Admins", email: data.token, token: data.token };
-          //TODO: Check user null
+          if (!data.token)
+            return null;
+
+          const user: User = { id: 1, name: "Admins", email: "Email", token: data.token };
 
           return user;
         } catch (e) {

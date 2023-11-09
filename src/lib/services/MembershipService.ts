@@ -1,4 +1,5 @@
-import { getServerSession } from "next-auth";
+import { getBearerToken } from "@/utils/authUtils";
+
 const baseUrl = process.env.API_URL ?? '';
 
 export interface MembershipListResponse {
@@ -18,8 +19,7 @@ export interface UtilityResponse {
 }
 
 export async function getMembershipList(): Promise<MembershipListResponse[] | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     try {

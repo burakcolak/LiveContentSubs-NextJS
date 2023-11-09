@@ -1,5 +1,5 @@
 import { OrderStatus } from "@/models/orderStatus";
-import { getServerSession } from "next-auth";
+import { getBearerToken } from "@/utils/authUtils";
 
 const baseUrl = process.env.API_URL ?? '';
 
@@ -18,8 +18,7 @@ export interface OrderDetailResponse {
 
 ///get order detail by identifier
 export async function getOrderDetail(identifier: string): Promise<OrderDetailResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
     try {
         const response = await fetch(`${baseUrl}/api/order/${identifier}`, {
@@ -69,8 +68,7 @@ export interface OrderListResponseItem {
 
 ///get order list by email
 export async function getOrderList({ pageNumber = 1, pageSize = 10 }: { pageNumber?: number, pageSize?: number }): Promise<OrderListResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     try {
@@ -105,8 +103,7 @@ export interface CheckoutResponse {
 
 ///checkout
 export async function checkout(request: CheckoutRequest): Promise<CheckoutResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
     try {
         const response = await fetch(`${baseUrl}/api/order/checkout`, {
@@ -133,7 +130,8 @@ export async function checkout(request: CheckoutRequest): Promise<CheckoutRespon
 }
 
 ///cancel order
-export async function cancelOrder(identifier: string, bearerToken: string): Promise<boolean> {
+export async function cancelOrder(identifier: string): Promise<boolean> {
+    const bearerToken = await getBearerToken();
     try {
         const response = await fetch(`${baseUrl}/api/order/cancelorder/${identifier}`, {
             method: 'POST',

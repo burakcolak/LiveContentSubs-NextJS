@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { getBearerToken } from "@/utils/authUtils";
 import { parseResponse } from "../utils";
 import { ProductType } from "@/models/productType";
 
@@ -24,8 +24,7 @@ export interface Product {
 
 ///get shopping cart
 export async function getShoppingCart(): Promise<ShoppingCartResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     try {
@@ -56,7 +55,8 @@ export async function getShoppingCart(): Promise<ShoppingCartResponse | null> {
 }
 
 ///add shopping cart with productIdentity
-export async function addShoppingCart(productIdentity: string, bearerToken: string): Promise<ShoppingCartResponse | null> {
+export async function addShoppingCart(productIdentity: string): Promise<ShoppingCartResponse | null> {
+    const bearerToken = await getBearerToken();
     try {
         const response = await fetch(`${baseUrl}/api/shoppingCart/${productIdentity}`, {
             method: 'POST',
@@ -80,7 +80,8 @@ export async function addShoppingCart(productIdentity: string, bearerToken: stri
 }
 
 ///delete shopping cart with productIdentity
-export async function deleteShoppingCartItem(productIdentity: string, bearerToken: string): Promise<boolean | null> {
+export async function deleteShoppingCartItem(productIdentity: string): Promise<boolean | null> {
+    const bearerToken = await getBearerToken();
     try {
         const response = await fetch(`${baseUrl}/api/shoppingCart/${productIdentity}`, {
             method: 'DELETE',
@@ -105,8 +106,7 @@ export async function deleteShoppingCartItem(productIdentity: string, bearerToke
 
 ///empty shopping cart
 export async function emptyShoppingCart(): Promise<boolean | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     try {
@@ -140,7 +140,8 @@ interface UpdateShoppingCartItemQuantityRequest {
 }
 
 ///update shopping cart item quantity
-export async function updateShoppingCartItemQuantity(request: UpdateShoppingCartItemQuantityRequest, bearerToken: string): Promise<boolean | null> {
+export async function updateShoppingCartItemQuantity(request: UpdateShoppingCartItemQuantityRequest): Promise<boolean | null> {
+    const bearerToken = await getBearerToken();
     try {
         const response = await fetch(`${baseUrl}/api/shoppingCart/update-quantity`, {
             method: 'POST',
@@ -166,8 +167,7 @@ export async function updateShoppingCartItemQuantity(request: UpdateShoppingCart
 
 ///purchase product with productIdentifier
 export async function purchaseProduct(productIdentifier: string): Promise<ShoppingCartResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     const response = await fetch(`${baseUrl}/api/shoppingcart/purchase?productIdentifier=${productIdentifier}`, {

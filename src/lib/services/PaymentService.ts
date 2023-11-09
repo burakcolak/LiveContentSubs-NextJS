@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { getBearerToken } from "@/utils/authUtils";
 import { parseResponse } from "../utils";
 import { PaymentStatus } from "@/models/paymentStatus";
 
@@ -12,8 +12,7 @@ export interface PaymentIntentResponse {
 
 //Get payment intent
 export async function getPaymentIntent(orderIdentifier: string): Promise<PaymentIntentResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     try {
@@ -40,8 +39,7 @@ export async function getPaymentIntent(orderIdentifier: string): Promise<Payment
 }
 
 export async function getLastCompletedPaymentIntent(paymentIntentId: string): Promise<PaymentIntentResponse | null> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
 
     try {

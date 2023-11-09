@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { getBearerToken } from "@/utils/authUtils";
 const baseUrl = process.env.API_URL ?? '';
 
 export interface BotRequestRequest {
@@ -14,8 +14,7 @@ export interface BotRequestRequest {
 }
 
 export async function createBotRequest(botRequest: BotRequestRequest): Promise<boolean> {
-    const session = await getServerSession();
-    const bearerToken = session?.user?.email;
+    const bearerToken = await getBearerToken();
     if (!bearerToken) return false;
 
     try {

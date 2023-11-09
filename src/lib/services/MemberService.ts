@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { getBearerToken } from "@/utils/authUtils";
 import { parseResponse } from "../utils";
 const baseUrl = process.env.API_URL ?? '';
 
@@ -134,7 +134,8 @@ interface ChangePasswordResponse {
     // You can define additional properties if needed based on the actual response schema
 }
 
-async function changePassword(request: ChangePasswordRequest, bearerToken: string): Promise<ChangePasswordResponse | null> {
+async function changePassword(request: ChangePasswordRequest): Promise<ChangePasswordResponse | null> {
+    const bearerToken = await getBearerToken();
     try {
         const response = await fetch(`${baseUrl}/api/member/changePassword`, {
             method: 'POST',

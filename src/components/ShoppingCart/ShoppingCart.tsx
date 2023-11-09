@@ -69,7 +69,7 @@ const ShoppingCart = ({ shoppingCart }: Props) => {
           ) : (
             <div className="divide-y space-y-2">
               <div>
-                <h2 className="text-3xl font-bold">Order detail</h2>
+                <h2 className="text-3xl font-bold">Order summary</h2>
                 <ul className="flex flex-col pt-8 space-y-2">
                   {shoppingCart.shoppingCartItems.map((item) => {
                     return (

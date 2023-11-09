@@ -28,7 +28,7 @@ export async function getShoppingCart(): Promise<ShoppingCartResponse | null> {
     if (!bearerToken) return null;
 
     try {
-        const response = await fetch(`${baseUrl}/api/shoppingCart`, {
+        const response = await fetch(`${baseUrl}/api/shoppingcart`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

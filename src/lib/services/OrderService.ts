@@ -118,6 +118,7 @@ export async function checkout(request: CheckoutRequest): Promise<CheckoutRespon
 
         if (!response.ok) {
             console.log(`Failed to checkout (Status: ${response.status})`);
+            //TODO: handle this response. it redirect page to /checkout?order=undefined
             return null;
         }
         const orderIdentifier = await response.text();

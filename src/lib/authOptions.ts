@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
           if (!data.token)
             return null;
 
-          const user: User = { id: 1, name: "Admins", email: "Email", token: data.token };
+          const user: User = { id: 1, name: "Admins", email: "Email", token: data.token, isTokenExpired: false };
 
           return user;
         } catch (e) {
@@ -51,6 +51,10 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt(params: { token: JWT, user: User | any, account: Account | null, profile?: Profile, isNewUser?: boolean }): Promise<JWT> {
       const { token, user } = params;
+
+      if (!token.expireDate)
+        token.expireDate = new Date().getTime() + (60 * 60 * 1000); //TODO: get from env file
+
       if (user) {
         token.accessToken = user.token;
       }
@@ -61,6 +65,13 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.token = token.accessToken;
       }
+
+      const currentDateTimeStamp = new Date().getTime();
+
+      if (token.expireDate && token.expireDate < currentDateTimeStamp && session.user) {
+        session.user.isTokenExpired = true;
+      }
+
       return session;
     }
   },
@@ -69,5 +80,19 @@ export const authOptions: NextAuthOptions = {
   },
   theme: {
     brandColor: "#0d9488",
-  }
+  },
+  events: {
+    signIn(message) {
+      console.log('signin message', message)
+    },
+    session(message) {
+      console.log('session message', message)
+    },
+    signOut(message) {
+      console.log('signOut message', message)
+    },
+  },
+  // Enable debug messages in the console if you are having problems
+  debug: false,
+
 };

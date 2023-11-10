@@ -1,3 +1,5 @@
+import { AuthOnly } from "@/components/AuthOnly/AuthOnly";
+import { AuthProvider } from "@/components/AuthProvider/AuthProvider";
 import UtilityBox from "@/components/Utility/UtilityBox";
 import UtilityList from "@/components/Utility/UtilityList";
 import { getMembershipList } from "@/lib/services/MembershipService";
@@ -16,10 +18,14 @@ const DashboardPage = async () => {
     <main>
       <div className="container mx-auto">
         <section className="bg-gray-50 flex justify-center">
-          <div className=" w-4/5 pt-8">
-            <h1 className="text-3xl font-bold">Bot Control Manager</h1>
-            <UtilityList utilities={utilities} />
-          </div>
+          <AuthProvider>
+            <AuthOnly>
+              <div className=" w-4/5 pt-8">
+                <h1 className="text-3xl font-bold">Bot Control Manager</h1>
+                <UtilityList utilities={utilities} />
+              </div>
+            </AuthOnly>
+          </AuthProvider>
         </section>
       </div>
     </main>

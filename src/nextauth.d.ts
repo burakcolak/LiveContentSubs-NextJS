@@ -5,20 +5,16 @@ declare module "next-auth" {
     }
 
     interface User {
-        //role?: Role;
-        //subscribed?: boolean;
         token: string;
+        isTokenExpired: boolean;
         id: number;
     }
-
-
 }
 
 declare module "next-auth/jwt" {
     interface JWT {
-        //role?: Role;
-        //subscribed: boolean;
         accessToken: string;
+        expireDate?: number;
     }
 }
 

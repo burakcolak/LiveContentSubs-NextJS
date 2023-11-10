@@ -1,4 +1,4 @@
-import { ForgotPasswordForm } from "@/components/Auth/ForgotPasswordForm";
+import ForgotPasswordForm from "@/components/Auth/ForgotPasswordForm";
 import FormContainer from "@/components/Container/Container";
 import React from "react";
 

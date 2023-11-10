@@ -36,7 +36,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/#"
+                  href="#"
                   className="hover:text-teal-600"
                 >
                   About Us
@@ -54,7 +54,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/#"
+                  href="#"
                   className="hover:text-teal-600"
                 >
                   Terms of Use

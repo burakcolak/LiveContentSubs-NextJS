@@ -1,11 +1,10 @@
-import { NextResponse } from "next/server";
-import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import { checkout } from "@/lib/services/OrderService";
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
 
     try {
-        const result = await checkout({});
+        const result = await checkout();
         if (!result) {
             return new NextResponse(
                 JSON.stringify({

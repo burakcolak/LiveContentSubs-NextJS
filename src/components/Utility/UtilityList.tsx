@@ -43,6 +43,7 @@ const UtilityList = ({ utilities }: Props) => {
               <UtilityBox
                 utilityIdentifier={utility.identifier}
                 utility={utility}
+                key={utility.identifier}
                 botRequest={createBotRequest}
               />
             );

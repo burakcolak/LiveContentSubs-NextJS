@@ -94,15 +94,13 @@ export async function getOrderList({ pageNumber = 1, pageSize = 10 }: { pageNumb
     }
 }
 
-export interface CheckoutRequest {
-}
 
 export interface CheckoutResponse {
     orderIdentifier: string;
 }
 
 ///checkout
-export async function checkout(request: CheckoutRequest): Promise<CheckoutResponse | null> {
+export async function checkout(): Promise<CheckoutResponse | null> {
     const bearerToken = await getBearerToken();
     if (!bearerToken) return null;
     try {
@@ -113,7 +111,7 @@ export async function checkout(request: CheckoutRequest): Promise<CheckoutRespon
                 Authorization: `Bearer ${bearerToken}`,
             },
             cache: 'no-cache',
-            body: JSON.stringify(request),
+            body: JSON.stringify({}),
         });
 
         if (!response.ok) {

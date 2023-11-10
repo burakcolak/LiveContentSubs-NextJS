@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { NextApiRequest } from "next";
 import { purchaseProduct } from "@/lib/services/ShoppingCartService";
 
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
     const url = new URL(req.url || "");
     const productID = url.searchParams.get("productId")
     if (!productID)

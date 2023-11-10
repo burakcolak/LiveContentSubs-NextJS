@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
-import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server";
+
 import { emptyShoppingCart } from "@/lib/services/ShoppingCartService";
 
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
     try {
 
         const result = await emptyShoppingCart();

@@ -81,18 +81,17 @@ export const authOptions: NextAuthOptions = {
   theme: {
     brandColor: "#0d9488",
   },
-  events: {
-    signIn(message) {
-      console.log('signin message', message)
-    },
-    session(message) {
-      console.log('session message', message)
-    },
-    signOut(message) {
-      console.log('signOut message', message)
-    },
-  },
-  // Enable debug messages in the console if you are having problems
-  debug: false,
+  // events: {
+  //   signIn(message) {
+  //     console.log('signin message', message)
+  //   },
+  //   session(message) {
+  //     console.log('session message', message)
+  //   },
+  //   signOut(message) {
+  //     console.log('signOut message', message)
+  //   },
+  // },
+
 
 };

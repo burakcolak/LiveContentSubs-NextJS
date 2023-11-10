@@ -6,6 +6,7 @@ import { UtilityResponse } from "@/lib/services/MembershipService";
 type UtilityProps = {
   utilityIdentifier: string;
   utility: UtilityResponse;
+  key: string;
   botRequest: (
     viewerCount: number,
     utilityIdentifier: string
@@ -15,6 +16,7 @@ type UtilityProps = {
 const UtilityBox = ({
   utilityIdentifier,
   utility,
+  key,
   botRequest,
 }: UtilityProps) => {
   const [sliderSelectedValue, setSliderSelectedValue] = React.useState(
@@ -33,7 +35,7 @@ const UtilityBox = ({
   }
 
   return (
-    <div className="border-indigo-600 border-2 shadow-xl rounded-md">
+    <div className="border-indigo-600 border-2 shadow-xl rounded-md" key={key}>
       <div className="p-8">
         <div className="flex justify-between items-center">
           <span className="font-semibold">{utility.name}</span>

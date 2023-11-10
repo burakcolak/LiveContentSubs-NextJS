@@ -24,7 +24,7 @@ export default async function Twitch() {
   return (
     <main>
       <div className="container mx-auto">
-        <section className=" bg-twitch-blue">
+        <section className=" bg-twitch-blue pt-8">
           <h2 className="text-5xl font-bold lg:text-center text-white">
             <p>Fast and Safe Viewbotting</p>
             <p>on Twitch Service</p>

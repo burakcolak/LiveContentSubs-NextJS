@@ -23,12 +23,12 @@ async function Trovo() {
   return (
     <main>
       <div className="container mx-auto">
-        <section className=" bg-trovo-green">
+        <section className="bg-trovo-green pt-8">
           <h2 className="text-5xl font-bold lg:text-center text-white">
             <p>Boost your Trovo Channel</p>
             <p>with the Best Trovo Bots Service</p>
           </h2>
-          <span className="block py-6 mb-2 font-medium lg:text-center text-white">
+          <span className="py-6 mb-2 font-medium lg:text-center text-white">
             #1 Number Trovo Viewer Bot Service
           </span>
           <h1></h1>

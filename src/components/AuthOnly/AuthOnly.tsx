@@ -2,9 +2,18 @@
 import { useSession } from "next-auth/react";
 import { ReactNode } from "react";
 import { signOut } from "next-auth/react";
+import Loading from "../Views/Loading";
 
 export const AuthOnly = ({ children }: { children: ReactNode }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === "loading")
+    return (
+      <div className="flex flex-col justify-center items-center space-y-4 py-16 bg-gray-50">
+        <Loading />
+      </div>
+    );
+
   if (!session) {
     return (
       <div className="flex flex-col justify-center items-center space-y-4 py-16 bg-gray-50">

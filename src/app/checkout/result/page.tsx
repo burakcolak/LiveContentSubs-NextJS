@@ -1,5 +1,6 @@
 import EmptyView from "@/components/Views/EmptyView";
 import { getLastCompletedPaymentIntent } from "@/lib/services/PaymentService";
+import { PagePaths } from "@/models/pagePaths";
 import { PaymentStatus } from "@/models/paymentStatus";
 import Link from "next/link";
 
@@ -27,13 +28,13 @@ export default async function ResultPage({
 
           <div className="flex flex-wrap pt-16 justify-center">
             <Link
-              href="/dashboard"
+              href={PagePaths.Dashboard}
               className="px-8 py-3 m-2 text-lg font-semibold rounded bg-teal-600 text-gray-50"
             >
               Get started
             </Link>
             <Link
-              href="/frequently-asked-questions"
+              href={PagePaths.Faq}
               className="px-8 py-3 m-2 text-lg border rounded text-gray-900 border-gray-300"
             >
               Learn more

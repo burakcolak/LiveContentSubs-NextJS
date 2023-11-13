@@ -3,6 +3,7 @@ import type { Account, NextAuthOptions, Profile, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { Session } from 'next-auth';
 import { JWT } from "next-auth/jwt";
+import { PagePaths } from "@/models/pagePaths";
 
 export const API_URL = process.env.API_URL;
 
@@ -76,7 +77,7 @@ export const authOptions: NextAuthOptions = {
     }
   },
   pages: {
-    signIn: "/login",
+    signIn: PagePaths.Login,
   },
   theme: {
     brandColor: "#0d9488",

@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Snackbar from "../Snackbar/Snackbar";
 import { RegisterMemberResponse } from "@/lib/services/MemberService";
 import LoadingForm from "./LoadingForm";
+import { PagePaths } from "@/models/pagePaths";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -51,7 +52,7 @@ const RegisterForm = () => {
         return;
       }
 
-      router.push("/login");
+      router.push(PagePaths.Login);
     } catch (error: any) {
       setLoading(false);
       setSnackBarText(error);

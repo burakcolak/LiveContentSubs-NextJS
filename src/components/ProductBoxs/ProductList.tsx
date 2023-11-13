@@ -3,6 +3,7 @@ import { ProductListResponse } from "@/lib/services/ProductService";
 import React from "react";
 import ProductBox from "./ProductBox";
 import { useRouter } from "next/navigation";
+import { PagePaths } from "@/models/pagePaths";
 
 type Props = {
   products: ProductListResponse[] | null;
@@ -25,11 +26,11 @@ const ProductsList = ({ products }: Props) => {
         }
       );
 
-      if (response.status === 401) router.push("/login");
+      if (response.status === 401) router.push(PagePaths.Login);
 
-      router.push("/shopping-cart");
+      router.push(PagePaths.ShoppingCart);
     } catch (error: any) {
-      if (error === 401) router.push("/login");
+      if (error === 401) router.push(PagePaths.Login);
     }
   }
 

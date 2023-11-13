@@ -1,3 +1,5 @@
+import { PagePaths } from "@/models/pagePaths";
+
 const Footer = () => {
   return (
     <footer className="py-6 bg-gray-50 text-gray-900">
@@ -6,7 +8,7 @@ const Footer = () => {
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <a
               rel="noopener noreferrer"
-              href="#"
+              href={PagePaths.Home}
               className="flex justify-center space-x-3 md:justify-start"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-teal-600">
@@ -36,7 +38,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="#"
+                  href={PagePaths.AboutUs}
                   className="hover:text-teal-600"
                 >
                   About Us
@@ -45,7 +47,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/contact-us"
+                  href={PagePaths.ContactUs}
                   className="hover:text-teal-600"
                 >
                   Contact
@@ -54,7 +56,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="#"
+                  href={PagePaths.TermsOfUse}
                   className="hover:text-teal-600"
                 >
                   Terms of Use
@@ -63,7 +65,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/frequently-asked-questions"
+                  href={PagePaths.Faq}
                   className="hover:text-teal-600"
                 >
                   F.A.Q
@@ -72,7 +74,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/knowledge-base"
+                  href={PagePaths.KnowledgeBase}
                   className="hover:text-teal-600"
                 >
                   Knowledge Base
@@ -86,7 +88,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/register"
+                  href={PagePaths.Register}
                   className="hover:text-teal-600"
                 >
                   Register
@@ -95,7 +97,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/login"
+                  href={PagePaths.Login}
                   className="hover:text-teal-600"
                 >
                   Log In
@@ -104,7 +106,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/orders"
+                  href={PagePaths.Order}
                   className="hover:text-teal-600"
                 >
                   My Orders
@@ -113,7 +115,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/memberships"
+                  href={PagePaths.Memberships}
                   className="hover:text-teal-600"
                 >
                   Memberships
@@ -123,7 +125,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/dashboard"
+                  href={PagePaths.Dashboard}
                   className="hover:text-teal-600"
                 >
                   Dashboard
@@ -137,7 +139,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/"
+                  href={PagePaths.Home}
                   className="hover:text-teal-600"
                 >
                   Home
@@ -146,7 +148,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/twitch-viewer-bot"
+                  href={PagePaths.TwitchViewer}
                   className="hover:text-teal-600"
                 >
                   Twitch Viewer Bot
@@ -155,7 +157,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/trovo-viewer-bot"
+                  href={PagePaths.TrovoViewer}
                   className="hover:text-teal-600"
                 >
                   Trovo Viewer Bot
@@ -164,7 +166,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/kick-viewer-bot"
+                  href={PagePaths.KickViewer}
                   className="hover:text-teal-600"
                 >
                   Kick Viewer Bot
@@ -173,7 +175,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/youtube-viewer-bot"
+                  href={PagePaths.YoutubeViewer}
                   className="hover:text-teal-600"
                 >
                   Youtube Viewer Bot
@@ -182,7 +184,7 @@ const Footer = () => {
               <li>
                 <a
                   rel="noopener noreferrer"
-                  href="/followers-bot"
+                  href={PagePaths.Followers}
                   className="hover:text-teal-600"
                 >
                   Followers
@@ -198,7 +200,7 @@ const Footer = () => {
           <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
             <a
               rel="noopener noreferrer"
-              href="#"
+              href={PagePaths.Home}
               className="flex items-center justify-center w-10 h-10 rounded-full bg-teal-600 text-gray-50"
             >
               <svg
@@ -213,7 +215,7 @@ const Footer = () => {
             </a>
             <a
               rel="noopener noreferrer"
-              href="#"
+              href={PagePaths.Home}
               className="flex items-center justify-center w-10 h-10 rounded-full bg-teal-600 text-gray-50"
             >
               <svg
@@ -227,7 +229,7 @@ const Footer = () => {
             </a>
             <a
               rel="noopener noreferrer"
-              href="#"
+              href={PagePaths.Home}
               className="flex items-center justify-center w-10 h-10 rounded-full bg-teal-600 text-gray-50"
             >
               <svg

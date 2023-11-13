@@ -16,6 +16,7 @@ import React from "react";
 import Image from "next/image";
 import KickBotTwoIcon from "@/components/Icons/KickBotTwoIcon";
 import Cart from "@/components/Cart/Cart";
+import { PagePaths } from "@/models/pagePaths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -356,7 +357,7 @@ async function Kick() {
             with Kick. Would you like to also check out our Trovo Viewer Bot
             plans?
             <strong className="ml-1">
-              <a href="/trovo-viewer-bot-plans/">Click here to review.</a>
+              <a href={PagePaths.TrovoViewer}>Click here to review.</a>
             </strong>
           </p>
         </section>

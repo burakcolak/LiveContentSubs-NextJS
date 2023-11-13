@@ -4,6 +4,7 @@ import Snackbar from "@/components/Snackbar/Snackbar";
 import { ResetPasswordResponse } from "@/lib/services/MemberService";
 import { parseResponse } from "@/lib/utils";
 import LoadingForm from "./LoadingForm";
+import { PagePaths } from "@/models/pagePaths";
 
 type Props = {
   token: string;
@@ -49,7 +50,7 @@ const ResetPasswordForm = ({ token }: Props) => {
       setLoading(false);
 
       if (responseBody.status === 200)
-        setSnackBarLink({ href: "/login", text: "Click to Login" });
+        setSnackBarLink({ href: PagePaths.Login, text: "Click to Login" });
 
       setSnackBarText(responseBody?.title ?? "An error occurred.");
       setShowSnackBar(true);

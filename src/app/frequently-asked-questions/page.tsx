@@ -1,4 +1,5 @@
 import FaqItem from "@/components/Faq/FaqItem";
+import { PagePaths } from "@/models/pagePaths";
 import React from "react";
 
 const faqPage = () => {
@@ -184,7 +185,7 @@ const faqPage = () => {
               <span className="font-bold text-lg">WELCOME</span>
             </div>
             <a
-              href="/login"
+              href={PagePaths.Login}
               rel="noreferrer noopener"
               className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block bg-gray-900 text-gray-50 border-gray-600"
             >

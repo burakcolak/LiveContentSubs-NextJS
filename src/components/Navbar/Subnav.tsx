@@ -3,6 +3,7 @@ import React from "react";
 import MemberNav from "./MemberNav";
 import AuthenticationNav from "./AuthenticationNav";
 import { useSession } from "next-auth/react";
+import { PagePaths } from "@/models/pagePaths";
 
 const Subnav = () => {
   const { data: session } = useSession();
@@ -18,7 +19,7 @@ const Subnav = () => {
         <div className="text-center flex flex-1  justify-center items-center">
           <a
             className="text-black font-bold text-sm items-center"
-            href="/login/"
+            href={PagePaths.Login}
           >
             The easiest way to become Popular on Twitch!
           </a>

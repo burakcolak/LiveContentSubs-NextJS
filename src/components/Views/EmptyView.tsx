@@ -1,3 +1,4 @@
+import { PagePaths } from "@/models/pagePaths";
 import Link from "next/link";
 import React from "react";
 
@@ -24,7 +25,7 @@ const EmptyView = ({ message }: Props) => {
       </svg>
       <p className="text-gray-600 text-lg my-4">{message}</p>
       <Link
-        href="/"
+        href={PagePaths.Home}
         className="px-8 py-3 font-semibold rounded bg-teal-600 text-gray-50"
       >
         Back to homepage

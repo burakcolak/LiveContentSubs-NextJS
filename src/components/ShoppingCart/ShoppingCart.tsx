@@ -10,6 +10,7 @@ import { parseResponse } from "@/lib/utils";
 import { CheckoutResponse } from "@/lib/services/OrderService";
 import { useRouter } from "next/navigation";
 import { getProductTypeDisplayName } from "@/models/productType";
+import { PagePaths } from "@/models/pagePaths";
 type Props = {
   shoppingCart: ShoppingCartResponse | null;
 };
@@ -44,7 +45,9 @@ const ShoppingCart = ({ shoppingCart }: Props) => {
         cache: "no-cache",
       });
       const responseJson = await parseResponse<CheckoutResponse>(response);
-      router.push(`/checkout?order=${responseJson.orderIdentifier}`);
+      router.push(
+        `${PagePaths.Checkout}?order=${responseJson.orderIdentifier}`
+      );
     } catch (error) {
       console.log("error checking out", error);
     }
@@ -57,7 +60,7 @@ const ShoppingCart = ({ shoppingCart }: Props) => {
           {!shoppingCart ? (
             <div className="flex flex-col justify-center items-center space-y-4">
               <h2 className="text-2xl font-semibold">Shopping cart is empty</h2>
-              <Link href="/">
+              <Link href={PagePaths.Home}>
                 <button
                   type="button"
                   className="px-2 py-2 font-semibold border rounded bg-teal-600 text-gray-50 border-teal-600"

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Snackbar from "@/components/Snackbar/Snackbar";
 import LoadingForm from "./LoadingForm";
+import { PagePaths } from "@/models/pagePaths";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -40,7 +41,7 @@ const LoginForm = () => {
       setShowSnackBar(true);
       setSnackBarText("Login successful, redirecting...");
       setTimeout(() => {
-        router.push("/");
+        router.push(PagePaths.Home);
       }, 1500);
     }
   };
@@ -75,7 +76,7 @@ const LoginForm = () => {
               </label>
               <a
                 rel="noopener noreferrer"
-                href="/forgot-password"
+                href={PagePaths.ForgotPassword}
                 className="text-xs hover:underline text-gray-600"
               >
                 Forgot password?
@@ -104,7 +105,7 @@ const LoginForm = () => {
             Don't have an account yet? &nbsp;
             <a
               rel="noopener noreferrer"
-              href="/register"
+              href={PagePaths.Register}
               className="hover:underline text-teal-600"
             >
               Sign up

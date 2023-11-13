@@ -6,6 +6,7 @@ import React from "react";
 import Image from "next/image";
 import Cart from "@/components/Cart/Cart";
 import TwitchBotIcon from "@/components/Icons/TwitchBotIcon";
+import { PagePaths } from "@/models/pagePaths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -182,7 +183,9 @@ async function Youtube() {
                 subject.
               </p>
               <p className="pt-8 text-purple-700 font-bold text-xl">
-                <a href="/dashboard">Click to try our Bot Control dashboard!</a>
+                <a href={PagePaths.Dashboard}>
+                  Click to try our Bot Control dashboard!
+                </a>
               </p>
             </div>
           </div>

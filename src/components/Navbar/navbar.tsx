@@ -10,13 +10,17 @@ import {
 } from "./NavButtons/NavButtons";
 import Subnav from "./Subnav";
 import { AuthProvider } from "../AuthProvider/AuthProvider";
+import { PagePaths } from "@/models/pagePaths";
 
 const Navbar: React.FC = () => {
   return (
     <div>
       <header className="flex items-center justify-start h-16 px-4 mx-auto rounded bg-gray-50">
         <div className="pr-8">
-          <Link className="text-3xl font-semibold text-gray-500" href="/">
+          <Link
+            className="text-3xl font-semibold text-gray-500"
+            href={PagePaths.Home}
+          >
             ViewerApps
           </Link>
         </div>

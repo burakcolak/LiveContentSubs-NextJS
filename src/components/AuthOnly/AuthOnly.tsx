@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { ReactNode } from "react";
 import { signOut } from "next-auth/react";
 import Loading from "../Views/Loading";
+import { PagePaths } from "@/models/pagePaths";
 
 export const AuthOnly = ({ children }: { children: ReactNode }) => {
   const { data: session, status } = useSession();
@@ -21,7 +22,7 @@ export const AuthOnly = ({ children }: { children: ReactNode }) => {
           You need to be logged in to view this page
         </h2>
         <a
-          href="/login"
+          href={PagePaths.Login}
           className="px-8 py-3 m-2 text-lg font-semibold rounded bg-teal-600 text-gray-50"
         >
           Login
@@ -38,7 +39,7 @@ export const AuthOnly = ({ children }: { children: ReactNode }) => {
           Your session has expired, please login again
         </h2>
         <a
-          href="/login"
+          href={PagePaths.Login}
           className="px-8 py-3 m-2 text-lg font-semibold rounded bg-teal-600 text-gray-50"
         >
           Login

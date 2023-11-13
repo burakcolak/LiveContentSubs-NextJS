@@ -265,13 +265,10 @@ const page = () => {
           If the Knowledge Base is insufficient for you, you can ask our Live
           Support operators what you are wondering 24/7.
         </p>
-        <Link
-          href={"support"}
-          className="px-8 py-3 my-8 font-semibold rounded-full bg-gray-800 text-gray-100 flex items-center"
-        >
+        <button className="px-8 py-3 my-8 font-semibold rounded-full bg-gray-800 text-gray-100 flex items-center">
           Live Support
           <FontAwesomeIcon className="w-4 h-4 ml-2" icon={faHeadset} />
-        </Link>
+        </button>
       </div>
     </main>
   );
